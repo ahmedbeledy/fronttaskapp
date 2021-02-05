@@ -14,12 +14,16 @@ export class TaskdetailsComponent implements OnInit {
 
   constructor(private activated: ActivatedRoute, private apiservice: TasksapicallService, private formbulid: FormBuilder) { }
   taskid: string = ""
-  task: Task = new Task()
+  task: Task = { description:"",
+  completed:false,
+  _id:"",
+  deleted:false
+}
   ngOnInit(): void {
     this.activated.paramMap.subscribe(par => {
       this.taskid = par.get('id') || ""
       this.apiservice.gettasksbyid(this.taskid).subscribe(res => {
-        this.task = res as Task
+        this.task = res 
         console.log(this.task)
 
       })

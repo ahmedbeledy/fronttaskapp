@@ -11,7 +11,6 @@ import { SignupComponent } from './signup/signup.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { MaxlengthPipe } from './maxlength.pipe';
-import { LogoutComponent } from './logout/logout.component';
  
   
 @NgModule({
@@ -26,9 +25,9 @@ import { LogoutComponent } from './logout/logout.component';
 
     MyprofileComponent,
 
-    MaxlengthPipe,
+    MaxlengthPipe
 
-    LogoutComponent
+    
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { UserapicallService } from './../serivce/userapicall.service';
 import { UserlogserviceService } from './../serivce/userlogservice.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private userlogservice:UserlogserviceService) { }
+  constructor(private userlogservice:UserlogserviceService,private Userapi:UserapicallService) { }
 
   ngOnInit(): void {
+    
    
   }
+  logout(){
+    this.Userapi.logout().subscribe(()=>    this.userlogservice.logout(),err=>console.log(err))
 
+  }
 }

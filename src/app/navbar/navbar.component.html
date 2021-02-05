@@ -15,7 +15,7 @@
           </li>
        
           <li class="nav-item">
-            <a class="nav-link"  [routerLink]="['/logout']" routerLinkActive="router-link-active"  *ngIf=" this.userlogservice.isloged()"        >log out</a>
+            <a   type="button"  class="nav-link" (click)="logout()"  *ngIf=" this.userlogservice.isloged()"        >log out </a>
         
           </li>
         </ul>

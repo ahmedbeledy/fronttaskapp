@@ -1,7 +1,7 @@
-export  class Task {
-    _id!: string; 
-    description!: string;
-    completed:boolean=false;
-    deleted:boolean=false;
+export interface Task {
+    _id: string; 
+    description: string;
+    completed:boolean
+    deleted:boolean
 
 }

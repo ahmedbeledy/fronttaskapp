@@ -1,8 +1,8 @@
 import { UserapicallService } from './../serivce/userapicall.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgControl, Validators } from '@angular/forms';
-import { User } from '../data/user';
 import { UserlogserviceService } from '../serivce/userlogservice.service';
+import { User } from '../data/user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,12 +25,22 @@ Email:['mail@example.com',[Validators.required,Validators.email ]]})
 
 login(){
 
-  let data:User=new User()
+   let data:User={
+     name: "",
+     email:"",
+     age:0,
+     token:"",
+     password:""
+     
+   }
+   
 data.email=this.form.controls['Email'].value
 data.password=this.form.controls['password'].value
   localStorage.setItem("Email",this.form.controls['Email'].value)
-  this.userser.login(data).subscribe(responce=>  {data  = responce as User
-      this.loginser.login(data.email,data.token) }
+  this.userser.login(data).subscribe(responce=>
+      {
+
+      this.loginser.login(responce.email ,responce.token) }
     ,()=>{
       
       localStorage.removeItem("Email")

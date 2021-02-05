@@ -3,6 +3,7 @@ import { TasksapicallService } from './../serivce/tasksapicall.service';
 import { UserapicallService } from './../serivce/userapicall.service';
 import { Component, OnInit } from '@angular/core';
 import { UserlogserviceService } from '../serivce/userlogservice.service';
+import { Task } from '../data/task';
 
 @Component({
   selector: 'app-myprofile',
@@ -12,6 +13,7 @@ import { UserlogserviceService } from '../serivce/userlogservice.service';
 export class MyprofileComponent implements OnInit {
 
   edit: boolean = false
+  task: Task[] = []
 
   constructor(private userapi: UserapicallService, private taskapi: TasksapicallService,private userlog:UserlogserviceService) { }
   form!: FormGroup;
@@ -20,7 +22,7 @@ export class MyprofileComponent implements OnInit {
   pending: number = 0
   ngOnInit(): void {
     this.userapi.getmyprofile().subscribe(res => this.data = res)
-
+this.getbendingtasks()
   }
   editdata() {
     this.edit = true
@@ -34,8 +36,9 @@ export class MyprofileComponent implements OnInit {
   getbendingtasks() {
 
     this.taskapi.gettasks().subscribe(res => {
+      this.task = res as Task[]
 
-      this.pending = res.length
+      this.pending = this.task.filter(x => !x.completed).length;
       
     })
 

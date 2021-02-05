@@ -18,7 +18,7 @@ export class TaskComponent implements OnInit {
   isloaded: String = "ISloasding"
   ngOnInit(): void {
     this.taskapi.gettasks().subscribe(res => {
-      this.task = res as Task[]
+      this.task = res  
     }
 
     )
@@ -30,7 +30,15 @@ export class TaskComponent implements OnInit {
     }
     else {
 
-      let task: Task = new Task();
+      let task: Task= {
+        description:"",
+        completed:false,
+        _id:"",
+        deleted:false
+
+
+
+      };
       task.description = desc,
         task.completed = completed
       this.task.push(task)
