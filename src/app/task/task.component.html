@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card">
+        <div *ngIf="taskcount()>0">
+          {{isloaded}}
+
+        you have
+        <span   class="text-danger">{{taskcount()}}</span>
+        pending task
+        </div>
+        <div class="card-header">
+            <div class="col-md-8"> 
+                
+            <input #title type="text" class="form-control"> 
+         </div>  
+         <div class="col-md-4"> 
+            <button  class="btn btn-dark" (click) = "addtask(title.value,false)"  >add</button>
+        </div> 
+     
+          
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">tasks</th>
+                <th scope="col">title</th>
+                <th scope="col">done</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of task ;let x=index">
+                <td>{{x+1}}</td>
+                <a    routerLink="/taskdetails/{{task._id}}" routerLinkActive="router-link-active">
+                <td [class.line]="task.Done" > 
+              
+                  {{task.description|maxlength:8}}</td></a>
+                <td><input  type="checkbox" [checked]="task.completed" (change)="itemchange(task)" >   </td>
+                  
+
+                <td>
+                  <img  *ngIf="task.deleted"  src="..\assets\img\ajax-loader.gif" >
+                  <button *ngIf="!task.deleted" class="btn btn-danger" (click)="delete(x)"> delete</button></td>
+              </tr>
+              
+            </tbody>
+          </table>
+      </div>
